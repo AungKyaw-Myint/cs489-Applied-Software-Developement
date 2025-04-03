@@ -11,8 +11,12 @@ name: Java CI with Maven
 on:
   push:
     branches: [ "main" ]
+    paths:
+      - 'lab1b/**'
   pull_request:
     branches: [ "main" ]
+    paths:
+      - 'lab1b/**'
 
 jobs:
   build:
