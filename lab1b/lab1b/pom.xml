@@ -39,7 +39,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>lab1b.EmployeePensionPlanApp</mainClass>
+                            <mainClass>lab1b/lab1b/src/main/java/org/example/Main.java</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
