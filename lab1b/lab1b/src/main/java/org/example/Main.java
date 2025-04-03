@@ -56,6 +56,7 @@ public class Main {
         LocalDate endDate = currentDate.minusYears(3).plusMonths(3);
 
         System.out.println("Next Quarter Enrollment");
+        
         employees.stream()
                  .filter(employee -> employee.getEmploymentDate().isAfter(startDate) && employee.getEmploymentDate().isBefore(endDate))
                 .forEach(employee -> System.out.println(employee.toString()));
