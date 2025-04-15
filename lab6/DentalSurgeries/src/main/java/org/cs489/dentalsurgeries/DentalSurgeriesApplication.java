@@ -36,7 +36,7 @@ public class DentalSurgeriesApplication {
                                     "Den",
                                     "Lwis",
                                     "M",
-                                    "1999-5-9",
+                                    LocalDate.of(1999,5,9),
                                     new AddressReqeust(
                                             14,
                                             "Street1",

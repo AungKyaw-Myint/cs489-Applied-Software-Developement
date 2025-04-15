@@ -1,5 +1,6 @@
 package org.cs489.dentalsurgeries.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,6 +28,7 @@ public class Address {
     private String zip;
 
     @OneToOne(mappedBy = "address")
+    @JsonBackReference
     private Patient patient;
 
     @OneToOne(mappedBy = "addressLocation")

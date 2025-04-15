@@ -1,9 +1,11 @@
 package org.cs489.dentalsurgeries.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -18,17 +20,18 @@ public class Patient {
     private Long id;
     private String firstName;
     private String lastName;
-    private String gender;
-    private String birthDate;
+    private String    gender;
+    private LocalDate birthDate;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id")
+    @JsonManagedReference
     private Address address;
 
     @OneToMany(mappedBy = "patient")
     private List<Appointment> appointments;
 
-    public Patient(String firstName, String lastName, String gender, String birthDate) {
+    public Patient(String firstName, String lastName, String gender, LocalDate birthDate) {
         this.firstName = firstName;
         this.lastName  = lastName;
         this.gender    = gender;
