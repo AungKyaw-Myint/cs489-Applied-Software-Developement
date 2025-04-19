@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/addresses")
+@RequestMapping("/api/v1/manager/addresses")
 @RequiredArgsConstructor
 public class AddressController {
 
@@ -19,7 +19,6 @@ public class AddressController {
 
     @GetMapping(value = "/list")
     public ResponseEntity<List<AddressResponse2>> listAddress() {
-
         return ResponseEntity.ok(addressService.getAddresses());
     }
 
