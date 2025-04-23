@@ -1,5 +1,6 @@
 package org.cs489.dentalsurgeries.dto.response;
 
+import org.cs489.dentalsurgeries.model.AppointmentStatus;
 import org.cs489.dentalsurgeries.model.Patient;
 import org.cs489.dentalsurgeries.model.Surgery;
 
@@ -12,7 +13,7 @@ public record AppointmentResponse(
         String description,
         LocalDate appointmentDate,
         String    appointmentType,
-        String appointmentStatus,
+        AppointmentStatus appointmentStatus,
         PatientResponse patient,
         SurgeryResponse surgery,
         DentistResponse dentist

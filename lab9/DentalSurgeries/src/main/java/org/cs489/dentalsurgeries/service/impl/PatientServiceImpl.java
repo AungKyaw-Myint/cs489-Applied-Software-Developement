@@ -1,9 +1,7 @@
 package org.cs489.dentalsurgeries.service.impl;
 
 import lombok.RequiredArgsConstructor;
-import org.cs489.dentalsurgeries.auth.AuthenticationService;
-import org.cs489.dentalsurgeries.auth.User;
-import org.cs489.dentalsurgeries.config.JwtService;
+import org.cs489.dentalsurgeries.auth.service.impl.AuthenticationService;
 import org.cs489.dentalsurgeries.dto.request.PatientRequest;
 import org.cs489.dentalsurgeries.dto.response.PatientResponse;
 import org.cs489.dentalsurgeries.exception.user.DataNotFound;
@@ -11,10 +9,7 @@ import org.cs489.dentalsurgeries.exception.user.DuplicateDataException;
 import org.cs489.dentalsurgeries.mapper.PatientMapper;
 import org.cs489.dentalsurgeries.model.Patient;
 import org.cs489.dentalsurgeries.repository.PatientRepository;
-import org.cs489.dentalsurgeries.repository.UserRepository;
 import org.cs489.dentalsurgeries.service.PatientService;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -58,7 +53,7 @@ public class PatientServiceImpl implements PatientService {
 
 
         Patient requestData=patientMapper.dtoToPatient(patientRequest);
-        requestData.setUser(authenticationService.getUser());
+//        requestData.setUser(authenticationService.getUser());
 
         Patient patient=patientRepository.save(requestData);
         return patientMapper.patientToDto(patient);

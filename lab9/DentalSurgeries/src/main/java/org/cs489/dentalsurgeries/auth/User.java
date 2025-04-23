@@ -18,6 +18,8 @@ import java.util.List;
 @Data
 @Table(name="users")
 @NoArgsConstructor
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "user_type")
 public class User implements UserDetails {
 
     @Id
@@ -32,16 +34,6 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
-    @OneToOne(mappedBy = "user")
-    @JsonIgnore
-    @Transient
-    private Dentist dentist;
-
-    @OneToOne(mappedBy = "user")
-    @JsonIgnore
-    @Transient
-    private Patient patient;
-
     public User(String username, String password) {
         this.username = username;
         this.password = password;
@@ -49,9 +41,10 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("ROLE_"+role.name()));
-        return authorities;
+//        List<GrantedAuthority> authorities = new ArrayList<>();
+//        authorities.add(new SimpleGrantedAuthority("ROLE_"+role.name()));
+//        return authorities;
+        return role.getAuthorities();
     }
 
     @Override

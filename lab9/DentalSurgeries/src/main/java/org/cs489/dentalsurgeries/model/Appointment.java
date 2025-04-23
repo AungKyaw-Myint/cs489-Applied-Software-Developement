@@ -26,7 +26,9 @@ public class Appointment {
     @Column(nullable = false)
     private LocalDate appointmentDate;
     private String    appointmentType;
-    private String appointmentStatus;
+
+    @Enumerated(EnumType.STRING)
+    private AppointmentStatus appointmentStatus;
 
     @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST} )
     @JoinColumn(name = "address_id")
@@ -46,7 +48,7 @@ public class Appointment {
             String description,
             LocalDate appointmentDate,
             String appointmentType,
-            String appointmentStatus
+            AppointmentStatus appointmentStatus
                       ) {
         this.appointmentCode = appointmentCode;
         this.title             = title;

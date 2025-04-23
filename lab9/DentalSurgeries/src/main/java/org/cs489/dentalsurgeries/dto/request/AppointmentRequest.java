@@ -1,5 +1,7 @@
 package org.cs489.dentalsurgeries.dto.request;
 
+import org.cs489.dentalsurgeries.model.AppointmentStatus;
+
 import java.time.LocalDate;
 
 public record AppointmentRequest(
@@ -8,9 +10,9 @@ public record AppointmentRequest(
         String description,
         LocalDate appointmentDate,
         String    appointmentType,
-        String appointmentStatus,
-        PatientRequest patient,
-        SurgeryRequest surgery,
-        DentistRequest dentist
+        AppointmentStatus appointmentStatus,
+        Long patientId,
+        Long surgeryId,
+        Long dentistId
 ) {
 }

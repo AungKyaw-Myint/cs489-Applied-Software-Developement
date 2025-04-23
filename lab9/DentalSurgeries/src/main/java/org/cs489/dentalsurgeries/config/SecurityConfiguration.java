@@ -1,6 +1,7 @@
 package org.cs489.dentalsurgeries.config;
 
 import lombok.RequiredArgsConstructor;
+import org.cs489.dentalsurgeries.auth.Permission;
 import org.cs489.dentalsurgeries.auth.UserRole;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,11 +31,21 @@ public class SecurityConfiguration {
                             authorizeRequests -> authorizeRequests
                                     .requestMatchers("/api/v1/auth/*").permitAll()
 //                                    .requestMatchers("/api/v1/auth/authenticate").permitAll()
-                                    .requestMatchers("/api/v1/user/**").hasAnyRole(
-                                            UserRole.USER.name(),
-                                            UserRole.MANAGER.name())
-                                    .requestMatchers("/api/v1/manager/**").hasAnyRole(
-                                            UserRole.MANAGER.name())
+                                    .requestMatchers("/api/v1/patients/**").hasAnyRole(
+                                            UserRole.ADMIN.name(),
+                                            UserRole.PATIENT.name())
+                                    .requestMatchers("/api/v1/dentists/**").hasAnyRole(
+                                            UserRole.ADMIN.name(),
+                                            UserRole.DENTIST.name())
+                                    .requestMatchers("/api/v1/admins/**").hasAnyRole(
+                                            UserRole.ADMIN.name())
+                                    .requestMatchers("/api/v1/appointments/**").hasAnyRole(
+                                            UserRole.ADMIN.name(),
+                                            UserRole.PATIENT.name(),
+                                            UserRole.DENTIST.name())
+                                    .requestMatchers("/api/v1/patients/search").hasAnyAuthority(
+                                            Permission.ADMIN_READ.getPermission(),
+                                            Permission.DENTIST_READ.getPermission())
                                     .anyRequest().authenticated())
                     .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                     .authenticationProvider(authenticationProvider)

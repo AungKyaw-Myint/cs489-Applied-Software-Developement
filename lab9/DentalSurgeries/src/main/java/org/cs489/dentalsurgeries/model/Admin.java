@@ -8,30 +8,23 @@ import org.cs489.dentalsurgeries.auth.User;
 import java.util.List;
 
 @Entity
-@Table(name = "dentist")
+@Table(name = "admin")
 @NoArgsConstructor
 @Data
-@DiscriminatorValue("DENTIST")
-public class Dentist extends User{
+@DiscriminatorValue("ADMIN")
+public class Admin extends User{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "dentist_id")
+    @Column(name = "admin_id")
     private Long id;
 
     private String firstName;
     private String lastName;
-
-    @Column(name = "specialization", nullable = false)
-    private String specialization;
     private String email;
     private String phone;
 
-
-    @OneToMany(mappedBy = "dentist")
-    private List<Appointment> appointments;
-
-    public Dentist(String firstName, String lastName, String email, String phone) {
+    public Admin(String firstName, String lastName, String email, String phone) {
         this.firstName = firstName;
         this.lastName  = lastName;
         this.email     = email;

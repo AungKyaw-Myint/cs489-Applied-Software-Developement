@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 public record PatientResponse(
          Long id,
+         String patientNo,
          String firstName,
          String lastName,
          String gender,
